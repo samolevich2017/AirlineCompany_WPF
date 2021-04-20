@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7ECDE088-F1CB-43FD-857C-AAE2259E7A58}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FinalProject_Samolevich</RootNamespace>
+    <AssemblyName>FinalProject_Samolevich</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AboutProgramWindow.xaml.cs">
+      <DependentUpon>AboutProgramWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AirplaneWindow.xaml.cs">
+      <DependentUpon>AirplaneWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClassesTheme\FilesOperations.cs" />
+    <Compile Include="HelperClassesTheme\ListThemes.cs" />
+    <Compile Include="PageShopSections\PagePurchasesSection.xaml.cs">
+      <DependentUpon>PagePurchasesSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageShopSections\PageSalesSection.xaml.cs">
+      <DependentUpon>PageSalesSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="SelectByDiapWindow.xaml.cs">
+      <DependentUpon>SelectByDiapWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\IPageShow.cs" />
+    <Compile Include="Services\IWindowShow.cs" />
+    <Compile Include="Services\JsonFileService.cs" />
+    <Compile Include="Services\PageShowService.cs" />
+    <Compile Include="Services\WindowShowService.cs" />
+    <Compile Include="ViewModels\ShopViewModel.cs" />
+    <Compile Include="ShopWindow.xaml.cs">
+      <DependentUpon>ShopWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AboutProgramWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AirlineManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AirplaneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AirlineManagementWindow.xaml.cs">
+      <DependentUpon>AirlineManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PageShopSections\PagePurchasesSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageShopSections\PageSalesSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectByDiapWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShopWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\AirlineCompany.cs" />
+    <Compile Include="Models\Airplane.cs" />
+    <Compile Include="Models\CEO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\air_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+    <Resource Include="Images\file.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\loop.png" />
+    <Resource Include="Images\save.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\store.png" />
+    <Resource Include="Images\themeDark.png" />
+    <Resource Include="Images\themeLight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ceo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AirplanesImages\A319-neo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\bill.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bgShop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\purchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sales.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addInShop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\globe.ico" />
+    <Resource Include="Images\bgAirplane.jpg" />
+    <Resource Include="Images\splashscreen.jpg" />
+    <Resource Include="AirplanesImages\Airbus-A319.jpg" />
+    <Resource Include="AirplanesImages\Airbus-A320neo.jpg" />
+    <Resource Include="AirplanesImages\a330.jpg" />
+    <Resource Include="AirplanesImages\737max7.jpg" />
+    <Resource Include="AirplanesImages\boeing777.jpg" />
+    <Resource Include="AirplanesImages\Comac-CR929.jpg" />
+    <Resource Include="AirplanesImages\Mitsubishi-MRJ.jpg" />
+    <Resource Include="AirplanesImages\a350-1000-f.jpg" />
+    <Resource Include="AirplanesImages\Airbus-A380.jpg" />
+    <Resource Include="AirplanesImages\Saab-340-NextJet.jpg" />
+    <Resource Include="AirplanesImages\Bombardier-CRJ550.jpg" />
+    <Content Include="Sounds\money.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,84 @@
+﻿<Window x:Class="FinalProject_Samolevich.ShopWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProject_Samolevich"
+        mc:Ignorable="d"
+        Title="Магазин" 
+        Icon="Images/store.png"
+        MinHeight="680" 
+        MinWidth="1100"
+        Width="1100"
+        WindowStartupLocation="CenterOwner"
+        Style="{DynamicResource WindowStyle}">
+    
+    <Window.Background>
+        <ImageBrush ImageSource="Images/bgShop.jpg"/>
+    </Window.Background>
+
+    <Window.DataContext>
+        <local:ShopViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <!-- Столбцы -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <!-- Боковая панель с разделами -->
+        <Grid x:Name="gridSection" Grid.Column="0" Grid.RowSpan="3" Width="155" Opacity="0.9" Background="#FF0F2542">
+            <!-- Строки -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <TextBlock Grid.Row="0" Text="РАЗДЕЛЫ" Style="{DynamicResource TextBlockStyle}" FontWeight="Bold" FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="3 10 3 3"/>
+            <Separator Grid.Row="1" Margin="0"/>
+            
+            <!-- Кнопка "Купить" -->
+            <Button x:Name="btnBuy" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" FontSize="18" Style="{DynamicResource SimpleButtonStyle}" ToolTip="Купить самолет" Command="{Binding OpenPageBuy}">
+                <StackPanel Orientation="Horizontal" Width="155">
+                    <Image Source="Images/purchase.png" Width="27" Height="27" HorizontalAlignment="Left" Margin="8 0 0 0"/>
+                    <TextBlock Text="Покупка" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Button>
+            
+            <!-- Кнопка "Продать" -->
+            <Button Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" FontSize="18" Style="{DynamicResource SimpleButtonStyle}" ToolTip="Продать самолет" Command="{Binding OpenPageSale}">
+                <StackPanel Orientation="Horizontal" Width="155">
+                    <Image Source="Images/sales.png" Width="27" Height="27" HorizontalAlignment="Left" Margin="8 0 0 0"/>
+                    <TextBlock Text="Продажа" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Button>
+            
+            <!-- Кнопка "Выйти" -->
+            <Button x:Name="btnExit" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="35" FontSize="18" Style="{DynamicResource SimpleButtonStyle}" Click="btnExit_Click">
+                <StackPanel Orientation="Horizontal" Width="155">
+                    <Image Source="Images/exit.png" Width="27" Height="27" HorizontalAlignment="Left" Margin="8 0 0 0"/>
+                    <TextBlock Text="Выйти" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Button>
+
+        </Grid>
+
+        <!-- Основное содержимое, отображаются странички -->
+        <Frame Grid.Column="1" Grid.RowSpan="3" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+
+    </Grid>
+</Window>

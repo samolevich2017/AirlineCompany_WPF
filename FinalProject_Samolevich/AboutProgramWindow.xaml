@@ -1,0 +1,33 @@
+﻿<Window x:Class="FinalProject_Samolevich.AboutProgramWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProject_Samolevich"
+        mc:Ignorable="d"
+        Title="О программе"
+        Height="339" 
+        Width="564" 
+        Style="{DynamicResource WindowStyle}"
+        Icon="icons\globe.ico">
+    
+    <Window.Background>
+        <ImageBrush ImageSource="Images\splashscreen.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+
+    <Grid>
+        <!-- Столбцы -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnClose" Grid.Column="1" Grid.Row="1" Margin="0 0 10 10" Width="100" Height="35" Content="Закрыть" Style="{DynamicResource ButtonStyle}" FontSize="16" Click="btnClose_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,167 @@
+﻿<Window x:Class="FinalProject_Samolevich.AirlineManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProject_Samolevich"
+        mc:Ignorable="d"
+        Title="Управление авиакомпаниями" 
+        Icon="icons/bill.ico"
+        Height="560" 
+        Width="950"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#1e2b52"
+        >
+
+    <Window.DataContext>
+        <local:ApplicationViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        
+        <!-- Столбцы -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="232*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        
+        <!--                                 Первая половина окна                               -->
+        <!-- ================================================================================== -->
+
+        <!-- DataGrid для списка авиакомпаний -->
+        <DataGrid Style="{DynamicResource DataGridStyle}" FontSize="18" Grid.RowSpan="5" ItemsSource="{Binding CollectionCompany, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCompany}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" RowHeaderWidth="0" HorizontalScrollBarVisibility="Hidden" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Авиакомпания" IsReadOnly="true" Width="300" FontSize="16" Binding="{Binding Path=NameOfCompany}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Кнопка Добавить авиакомпанию -->
+        <Border Style="{DynamicResource BorderStyle}" Grid.Column="0" Grid.Row="6">
+            <Button x:Name="btnAddAirlineCompany" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle}" Width="200" Height="35" Command="{Binding AddAirlineCommand}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border BorderBrush="LightBlue" BorderThickness="2" Width="25" Height="25" CornerRadius="25">
+                    <Image Source="Images/plus.png"  HorizontalAlignment="Left" Margin="0 0 0 0"/>
+                    </Border>
+                    <TextBlock Text="Добавить" Style="{DynamicResource TextBlockStyle}" FontSize="18" Margin="10 0 10 0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <!--                                 Вторая половина окна                               -->
+        <!-- ================================================================================== -->
+        
+        <!-- Заголовок - название авиакомпании -->
+        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{DynamicResource BorderAsHeaderStyle}">
+            <TextBox Text="{Binding SelectedCompany.NameOfCompany}" Style="{DynamicResource TextBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Background="Transparent" BorderBrush="Transparent"/>
+        </Border>
+
+
+        <!-- Данные о директоре -->
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Style="{DynamicResource BorderAsHeaderStyle}" Margin="10 10 10 0">
+            <TextBlock Text="О директоре" Style="{DynamicResource TextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  Style="{DynamicResource BorderStyle}" Margin="10 0 10 10" CornerRadius="0 0 20 20">
+            <StackPanel Orientation="Horizontal">
+                <!-- Фото генерального директора TODO: Добавить возможность добавления по D&D -->
+                <Image Source="{Binding SelectedCompany.Ceo.PathToImage}" Margin="20 10 10 10" Width="232" Height="232" Stretch="Uniform" ToolTip="Фото генерального директора"/>
+
+                <!-- Данные генерального директора -->
+                <Grid Margin="50 60 10 10">
+                    
+                    <!-- Столбцы -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Строки -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Фамилия: " Style="{DynamicResource TextBlockStyle}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Имя: " Style="{DynamicResource TextBlockStyle}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Отчество: " Style="{DynamicResource TextBlockStyle}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Должность: " Style="{DynamicResource TextBlockStyle}"/>
+
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding SelectedCompany.Ceo.Surname}"  Style="{DynamicResource TextBoxStyle}" Background="Transparent"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding SelectedCompany.Ceo.Name}"  Style="{DynamicResource TextBoxStyle}" Background="Transparent"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding SelectedCompany.Ceo.Patronymic}"  Style="{DynamicResource TextBoxStyle}" Background="Transparent"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="Генеральный директор" Style="{DynamicResource TextBlockStyle}"/>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+        
+        <!-- Данные о компании -->
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Style="{DynamicResource BorderAsHeaderStyle}" Margin="10 10 10 0">
+            <TextBlock Text="Данные компании" Style="{DynamicResource TextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+        </Border>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Style="{DynamicResource BorderStyle}" CornerRadius="0 0 20 20" Margin="10 0 10 10">
+
+            <Grid VerticalAlignment="Center">
+
+                <!-- Столбцы -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Строки -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="100 10 10 10" Text="Адрес компании: " Style="{DynamicResource TextBlockStyle}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="100 10 10 10" Text="Лицевой счет: " Style="{DynamicResource TextBlockStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="100 10 10 10" Text="Количество самолетов: " Style="{DynamicResource TextBlockStyle}"/>
+
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="50 5 10 10" HorizontalAlignment="Left" Width="200" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedCompany.AdressOfCompany}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="50 5 10 10" HorizontalAlignment="Left" Width="200" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedCompany.AccountOfCompany, StringFormat={}{0:c} }"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Margin="50 5 10 10" HorizontalAlignment="Left" Width="200" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}" Background="Transparent" Text="{Binding SelectedCompany.Airplanes.Count}"/>
+
+            </Grid>
+        </Border>
+        
+        <!-- Кнопка Удалить авиакомпанию -->
+        <Border Style="{DynamicResource BorderStyle}" Grid.Column="1" Grid.Row="5">
+            <Button x:Name="btnRemoveAirlineCompany" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle}" Width="200" Height="35" Command="{Binding RemoveAirlineCommand}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border BorderBrush="LightBlue" BorderThickness="2" Width="25" Height="25" CornerRadius="25">
+                        <Image Source="Images/minus.png"  HorizontalAlignment="Left" Margin="0 0 0 0"/>
+                    </Border>
+                    <TextBlock Text="Удалить" Style="{DynamicResource TextBlockStyle}" FontSize="18" Margin="10 0 10 0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <!-- Кнопка Закрыть окно -->
+        <Border Style="{DynamicResource BorderStyle}" Grid.Column="2" Grid.Row="5">
+            <Button x:Name="btnComebackToMain" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle}" Width="200" Height="35" Click="btnComebackToMain_Click">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="Images/logout.png"  HorizontalAlignment="Left" Margin="0 0 0 0" Width="24" Height="24"/>
+                    <TextBlock Text="Закрыть" Style="{DynamicResource TextBlockStyle}" FontSize="18" Margin="10 0 10 0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+    </Grid>
+</Window>

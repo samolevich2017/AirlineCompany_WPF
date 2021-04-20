@@ -1,0 +1,100 @@
+﻿<Window x:Class="FinalProject_Samolevich.AirplaneWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProject_Samolevich"
+        mc:Ignorable="d"
+        Icon="icons/globe.ico"
+        Title="О самолёте" Height="650" Width="850" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="Images/bgAirplane.jpg"/>
+    </Window.Background>
+
+    <Window.DataContext>
+        <local:ApplicationViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <!-- Столбцы -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок в верхней части страницы -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Подробная информация" Style="{DynamicResource TextBlockStyle}" FontSize="36" Margin="5 20 5 5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+        <!-- Фото самолета -->
+        <Border Grid.Column="0" Grid.Row="1" Style="{DynamicResource BorderAsHeaderStyle}" Margin="55 30 0 0" Width="324" Height="35">
+            <TextBlock Text="Фото самолета" Style="{DynamicResource TextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+        </Border>
+        <Border Grid.Row="2" Grid.RowSpan="9" Style="{DynamicResource BorderStyle}" VerticalAlignment="Top" Margin="55 0 0 10" Width="324" Height="260" CornerRadius="0 0 8 8">
+            <Grid>
+                <Image x:Name="imageAirplane" Width="320" Height="256" Stretch="Fill" Margin="2" Source="{Binding SelectedAirplane.PathToImage}"/>
+            </Grid>
+        </Border>
+
+        <!-- Характеристики самолета -->
+        <Border Grid.Column="1" Grid.Row="1" Style="{DynamicResource BorderAsHeaderStyle}" Margin="10 30 10 0" Width="400" Height="35">
+            <TextBlock Text="Характеристики" Style="{DynamicResource TextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+        </Border>
+
+        <Border Opacity="0.85" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  Style="{DynamicResource BorderStyle}" Margin="10 0 10 30" CornerRadius="0 0 20 20" Height="400" Width="400">
+            <Grid Margin="10 0 0 0">
+                <!-- Столбцы -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Строки -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Название: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Количество мест: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Крейс. скорость: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Дальность полета: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Макс. взлетная масса: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Макс. высота полета: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Регистрационный номер: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Часовой расход топлива: " Style="{DynamicResource TextBlockStyle}" FontSize="18"/>
+                <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Margin="10 5 5 5" Text="Цена: " Style="{DynamicResource TextBlockStyle}" FontSize="20" FontWeight="Bold"/>
+
+                <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.AirplaneName}" FontSize="18"/>
+                <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.NumberOfSeats}" FontSize="18"/>
+                <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.CruisingSpeed}" FontSize="18"/>
+                <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.RangeOfFlight}" FontSize="18"/>
+                <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.MaximumTakeOffWeight}" FontSize="18"/>
+                <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.MaximumFlightAltitude}" FontSize="18"/>
+                <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.RegisterNumber}" FontSize="18"/>
+                <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.FuelConsumption}" FontSize="18"/>
+                <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" Margin="5 5 5 10" Style="{DynamicResource TextBoxStyle}" Background="Transparent" Text="{Binding SelectedAirplane.PriceOfAirplane}" FontSize="18" FontWeight="Bold"/>
+            </Grid>
+        </Border>
+
+
+        <!-- Кнопка Добавить - добавляет в коллекцию товаров, новый самолет -->
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Margin="0 0 0 10" MinWidth="300" Width="300" MinHeight="45" Content="Закрыть" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle}" FontSize="20" FontWeight="Bold" Click="Button_Click"/>
+
+    </Grid>
+</Window>
